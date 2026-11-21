@@ -1,0 +1,112 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+<meta charset="utf-8">
+<meta name="viewport" content="width=device-width,initial-scale=1,viewport-fit=cover">
+<title>A Little Surprise</title>
+<meta name="theme-color" content="#ffd6e3">
+<link rel="preconnect" href="https://fonts.googleapis.com"><link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+<link href="https://fonts.googleapis.com/css2?family=Great+Vibes&family=Playfair+Display:ital,wght@0,500;1,400&family=Quicksand:wght@400;600&display=swap" rel="stylesheet">
+<link rel="stylesheet" href="css/style.css">
+</head>
+<body>
+<svg width="0" height="0" style="position:absolute" aria-hidden="true"><symbol id="flower" viewBox="-50 -50 100 100"><g fill="currentColor"><ellipse rx="11" ry="26" cy="-24"/><ellipse rx="11" ry="26" cy="-24" transform="rotate(60)"/><ellipse rx="11" ry="26" cy="-24" transform="rotate(120)"/><ellipse rx="11" ry="26" cy="-24" transform="rotate(180)"/><ellipse rx="11" ry="26" cy="-24" transform="rotate(240)"/><ellipse rx="11" ry="26" cy="-24" transform="rotate(300)"/></g><circle r="10" fill="#fff3b0"/></symbol></svg>
+
+<div id="bg" aria-hidden="true">
+  <svg class="fl f1"><use href="#flower"/></svg><svg class="fl f2"><use href="#flower"/></svg>
+  <svg class="fl f3"><use href="#flower"/></svg><svg class="fl f4"><use href="#flower"/></svg>
+  <div id="hearts"></div>
+</div>
+
+<button id="musicFab" class="fab" hidden aria-label="Toggle music">♪</button>
+<button id="backBtn" class="back" hidden>← Home</button>
+
+<main id="lock" class="screen active">
+  <div class="card center">
+    <div class="lockicon">🔒</div>
+    <h1 class="script" id="siteTitle"></h1>
+    <p class="muted">Enter the secret PIN</p>
+    <div id="dots" class="dots" aria-live="polite"></div>
+    <div id="pad" class="pad"></div>
+    <p id="pinMsg" class="msg" role="alert"></p>
+    <p id="pinHint" class="hint"></p>
+  </div>
+</main>
+
+<main id="envelope" class="screen">
+  <div class="center">
+    <div id="env" class="env" role="button" tabindex="0" aria-label="Open the envelope">
+      <div class="env-back"></div>
+      <div class="env-paper"><span class="script" id="envTo"></span><small>for you ♡</small></div>
+      <div class="env-front"></div>
+      <div class="env-flap"></div>
+      <div class="seal">♥</div>
+    </div>
+    <p class="muted pulse">Tap the envelope to open</p>
+  </div>
+</main>
+
+<main id="home" class="screen">
+  <div class="wrap center">
+    <p class="muted">Welcome,</p>
+    <h1 class="script big" id="homeName"></h1>
+    <p class="muted" id="welcomeLine"></p>
+    <div class="menu">
+      <button data-go="countdown"><i>⏳</i><b>Our Time</b><small>Countdown</small></button>
+      <button data-go="music"><i>🎵</i><b>Our Song</b><small>Music</small></button>
+      <button data-go="memories"><i>📸</i><b>Memories</b><small>Gallery</small></button>
+      <button data-go="gift"><i>🎁</i><b>Gift</b><small>Surprise</small></button>
+      <button data-go="letter"><i>💌</i><b>Letter</b><small>From my heart</small></button>
+      <button id="relock"><i>🔐</i><b>Lock</b><small>Back to PIN</small></button>
+    </div>
+  </div>
+</main>
+
+<main id="countdown" class="screen"><div class="wrap center">
+  <h2 class="script">Our Time Together</h2>
+  <div class="card"><p class="muted">Together for</p>
+    <div class="grid3" id="together"></div><p class="muted" id="daysTotal"></p></div>
+  <div class="card"><p class="muted" id="specialLabel"></p>
+    <div class="grid4" id="special"></div><p class="muted" id="specialDone"></p></div>
+</div></main>
+
+<main id="music" class="screen"><div class="wrap center">
+  <h2 class="script">Our Song</h2>
+  <div class="card">
+    <div id="vinyl" class="vinyl"><span>♥</span></div>
+    <h3 id="trackTitle"></h3><p class="muted" id="trackArtist"></p>
+    <input id="seek" type="range" min="0" max="100" value="0" aria-label="Seek">
+    <div class="times"><span id="cur">0:00</span><span id="dur">0:00</span></div>
+    <div class="ctrl"><button id="loopBtn" class="ghost" aria-pressed="false" title="Loop">⟲</button>
+      <button id="playBtn" class="round" aria-label="Play">▶</button>
+      <label class="vol">🔈<input id="vol" type="range" min="0" max="1" step="0.05" value="0.8" aria-label="Volume"></label></div>
+    <p id="musicNote" class="note" hidden>No song found yet. Add <code>assets/audio/our-song.mp3</code> or pick a file from your device below.</p>
+    <label class="btn ghost">Choose a song from device<input id="file" type="file" accept="audio/*" hidden></label>
+  </div>
+</div></main>
+
+<main id="memories" class="screen"><div class="wrap center">
+  <h2 class="script">Our Memories</h2><div id="gallery" class="gallery"></div>
+</div></main>
+<div id="lightbox" class="lightbox" hidden>
+  <button class="lb-x" aria-label="Close">✕</button><button class="lb-p" aria-label="Previous">‹</button>
+  <figure><img id="lbImg" alt=""><figcaption id="lbCap"></figcaption></figure><button class="lb-n" aria-label="Next">›</button>
+</div>
+
+<main id="gift" class="screen"><div class="wrap center">
+  <h2 class="script">A Gift For You</h2>
+  <div id="giftBox" class="gift" role="button" tabindex="0" aria-label="Open gift"><div class="lid"></div><div class="box"></div><div class="ribbon"></div></div>
+  <p class="muted pulse" id="giftLabel"></p>
+  <div id="giftCard" class="card reveal" hidden><h3 class="script" id="giftTitle"></h3><p id="giftMsg"></p>
+    <button class="btn" id="giftBtn"></button></div>
+</div></main>
+
+<main id="letter" class="screen"><div class="wrap center">
+  <div class="paper"><h2 class="script" id="lTitle"></h2><div id="lBody" class="lbody"></div><p class="sig script" id="lSig"></p></div>
+  <div class="row"><button class="btn ghost" id="editBtn">✎ Edit letter</button><button class="btn ghost" id="resetBtn" hidden>Reset</button></div>
+</div></main>
+
+<script src="js/config.js"></script>
+<script src="js/app.js"></script>
+</body>
+</html>
